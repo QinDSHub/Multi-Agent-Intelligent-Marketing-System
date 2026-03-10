@@ -62,12 +62,17 @@ ________________________________________
 ## Result<br>
 Using this hybrid retrieval-based approach, the model achieved: AUC = 0.936
 ________________________________________
+## Limitations and practical considerations<br>
+While the approach performs well in many scenarios, several practical considerations are worth highlighting.<br>
+
+First, the effectiveness of KNN-based similarity retrieval depends heavily on whether sufficiently similar users actually exist in the dataset. In certain edge cases, the nearest neighbors retrieved may still be weakly related to the target user. Directly transferring labels or behavioral signals from such neighbors may introduce noise rather than meaningful signal. A practical mitigation strategy is to introduce a similarity threshold, ensuring that only high-confidence neighbors contribute to downstream inference. In addition, multiple similarity or distance metrics can be incorporated to better monitor and validate the robustness of the retrieval process.<br>
+
+Second, the choice of text embedding model should be aligned with the complexity and richness of the textual features. OpenAI embeddings generate Transformer-based representations with 1536 dimensions, which provide strong semantic capacity but may be unnecessarily heavy for simple or limited textual inputs. In those cases, lighter embedding models with lower-dimensional representations may offer a more efficient trade-off between semantic fidelity and computational cost.<br>
+
+Finally, an interesting extension of thinking is that the models developed can naturally serve as Modular Capability Providers (MCPs) within agent or multi-agent architectures, enabling them to be orchestrated as reusable components in larger decision or automation pipelines.
+________________________________________
 ## Key Insight<br>
-Occam's Razor: simplicity over complexity. Strong data cleaning, thoughtful feature engineering, and simple retrieval-based methods can sometimes outperform overly complex models, depending on the application context.<br>
-More sophisticated models are often better suited for:<br>
-&emsp;•	Large-scale datasets<br>
-&emsp;•	Highly complex business scenarios<br>
-&emsp;•	Situations requiring fine-grained trade-offs between precision and recall
+Following the principle of Occam’s Razor, simplicity often outperforms unnecessary complexity. In practice, high-quality data cleaning, thoughtful feature engineering, and well-designed retrieval mechanisms can sometimes deliver stronger results than increasingly complex modeling stacks.<br>
 ________________________________________
 ## Project Status<br>
 This project is currently still in the exploratory and development stage.<br>
